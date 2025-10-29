@@ -8,7 +8,7 @@ async function createUpload(req, res) {
     const uploadId = crypto.randomUUID()
 
     await redisClient.set(
-      uploadId,
+      process.env["REDIS_KEY_PREFIX"] + uploadId,
       req.body.filename,
       {
         expiration: {
