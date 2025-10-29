@@ -30,6 +30,6 @@ This route is used to let people upload files.
 {
     "success": true,
     "message": "File uploaded successfully",
-    "url": "https://example.s3.ir-thr-at1.arvanstorage.ir/uploads/497fcf5a-ea4b-4d61-9f8b-e8faad1a7eea.png"
+    "url": "https://example.s3.ir-thr-at1.arvanstorage.ir/uploads/test.png"
 }
 ```

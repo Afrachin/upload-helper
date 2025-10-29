@@ -48,7 +48,7 @@ async function userUpload(req, res) {
       return res.status(400).json({ success: false, message: `Invalid file type. Must be .${allowedExt}` })
     }
 
-    const finalKey = `${crypto.randomUUID()}.${allowedExt}`
+    const finalKey = savedFilename
 
     const uploadParams = {
       Bucket: process.env.OBJECT_STORAGE_BUCKET,
