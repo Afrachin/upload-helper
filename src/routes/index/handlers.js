@@ -1,7 +1,7 @@
 const crypto = require("crypto")
 const redisClient = require("../../redis")
 const { PutObjectCommand } = require("@aws-sdk/client-s3")
-const { s3 } = require("./s3")
+const { s3 } = require("../../s3")
 
 async function createUpload(req, res) {
   try {

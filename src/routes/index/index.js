@@ -4,7 +4,7 @@ const authMiddleware = require("../../middlewares/auth")
 const validateMiddleware = require("../../middlewares/validate")
 const { filenameSchema } = require("./validators")
 const { createUpload, userUpload } = require("./handlers")
-const upload = require("./uploadMiddleware")
+const upload = require("../../middlewares/upload")
 
 const indexRouter = Router()
 
@@ -15,6 +15,10 @@ indexRouter.post(
   createUpload
 )
 
-indexRouter.post("/user-upload/:uploadId", upload.single("file"), userUpload)
+indexRouter.post(
+  "/user-upload/:uploadId",
+  upload.single("file"),
+  userUpload
+)
 
 module.exports = indexRouter
