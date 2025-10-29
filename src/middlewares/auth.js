@@ -5,7 +5,7 @@
  * @param {import("express").NextFunction} next 
  */
 const authMiddleware = (req, res, next) => {
-  const userAccessToken = req.headers["X-Access-Token"]
+  const userAccessToken = req.headers["x-access-token"]
 
   if(!userAccessToken) {
     return res.status(403).send({

@@ -1,10 +1,11 @@
 const { configDotenv } = require("dotenv");
+configDotenv()
+
 const express = require("express");
 const indexRouter = require("./routes/index");
 
 const PORT = process.env.PORT || 8080
 
-configDotenv()
 
 const app = express()
 

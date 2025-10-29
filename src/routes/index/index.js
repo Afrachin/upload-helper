@@ -48,7 +48,7 @@ indexRouter.post(
       {
         expiration: {
           type: "EX",
-          value: 120
+          value: 60 * 15
         }
       }
     )
@@ -62,7 +62,6 @@ indexRouter.post(
 
 indexRouter.post(
   "/user-upload/:uploadId",
-  authMiddleware,
   upload.single("file"),
   async (req, res) => {
     try {
@@ -102,10 +101,11 @@ indexRouter.post(
 
       // ✅ Upload to S3
       const uploadParams = {
-        Bucket: process.env.S3_BUCKET,
+        Bucket: process.env.OBJECT_STORAGE_BUCKET,
         Key: `uploads/${finalKey}`,
         Body: req.file.buffer,
         ContentType: req.file.mimetype,
+        ACL: "public-read"
       }
 
       await s3.send(new PutObjectCommand(uploadParams))
