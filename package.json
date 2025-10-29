@@ -2,7 +2,7 @@
   "name": "upload-helper",
   "version": "1.0.0",
   "description": "",
-  "main": "src/ndex.js",
+  "main": "src/app.js",
   "scripts": {
     "start": "node ."
   },
@@ -10,9 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.919.0",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "multer": "^2.0.2",
+    "redis": "^5.9.0",
     "zod": "^4.1.12"
   }
 }
