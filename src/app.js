@@ -4,8 +4,7 @@ configDotenv()
 const express = require("express");
 const indexRouter = require("./routes/index");
 
-const PORT = process.env.PORT || 8080
-
+const PORT = parseInt(process.env.PORT) || 3000
 
 const app = express()
 
