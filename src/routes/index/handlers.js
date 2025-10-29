@@ -3,6 +3,12 @@ const redisClient = require("../../redis")
 const { PutObjectCommand } = require("@aws-sdk/client-s3")
 const { s3 } = require("../../s3")
 
+/**
+ * 
+ * @param {import("express").Request} req 
+ * @param {import("express").Response} res 
+ * @returns 
+ */
 async function createUpload(req, res) {
   try {
     const uploadId = crypto.randomUUID()
@@ -29,6 +35,12 @@ async function createUpload(req, res) {
   }
 }
 
+/**
+ * 
+ * @param {import("express").Request} req 
+ * @param {import("express").Response} res 
+ * @returns 
+ */
 async function userUpload(req, res) {
   try {
     const { uploadId } = req.params
