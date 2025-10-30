@@ -5,6 +5,7 @@ const validateMiddleware = require("../../middlewares/validate")
 const { filenameSchema } = require("./validators")
 const { createUpload, userUpload } = require("./handlers")
 const upload = require("../../middlewares/upload")
+const cors = require("cors")
 
 const indexRouter = Router()
 
@@ -17,6 +18,9 @@ indexRouter.post(
 
 indexRouter.post(
   "/user-upload/:uploadId",
+  cors({
+    origin: "*"
+  }),
   upload.single("file"),
   userUpload
 )
