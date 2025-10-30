@@ -18,7 +18,7 @@ This route is used to create an upload id for the users to upload files to.
 }
 ```
 
-### POST /upload/:uploadId
+### POST /user-upload/:uploadId
 This route is used to let people upload files.
 
 #### Input
