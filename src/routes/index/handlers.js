@@ -49,7 +49,7 @@ async function userUpload(req, res) {
       return res.status(400).json({ success: false, message: "No file uploaded" })
     }
 
-    const savedFilename = await redisClient.get(uploadId)
+    const savedFilename = await redisClient.get(process.env["REDIS_KEY_PREFIX"] + uploadId)
     if (!savedFilename) {
       return res.status(400).json({ success: false, message: "Invalid or expired upload ID" })
     }
