@@ -23,6 +23,7 @@ const { DEFAULT_PORT, DEFAULT_MAX_UPLOAD_SIZE_MB } = require("../constants")
  * @property {Object} upload - Upload configuration
  * @property {number} upload.maxSizeMB - Maximum upload size in MB
  * @property {number} upload.maxSizeBytes - Maximum upload size in bytes (computed)
+ * @property {number} upload.jsonLimitMB - Maximum JSON body size in MB
  * @property {Object} cors - CORS configuration
  * @property {string[]} cors.allowedOrigins - List of allowed origins
  * @property {Object} rateLimit - Rate limiting configuration
@@ -53,7 +54,8 @@ const config = {
     maxSizeMB: parseInt(process.env.MAX_UPLOAD_SIZE_MB) || DEFAULT_MAX_UPLOAD_SIZE_MB,
     get maxSizeBytes() {
       return this.maxSizeMB * 1024 * 1024
-    }
+    },
+    jsonLimitMB: parseInt(process.env.JSON_BODY_LIMIT_MB) || 10
   },
   
   cors: {

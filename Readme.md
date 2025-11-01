@@ -77,6 +77,7 @@ docker run -d \
 | `OBJECT_STORAGE_SECRET_KEY` | Yes | - | Storage secret key |
 | `OBJECT_STORAGE_BUCKET` | Yes | - | Storage bucket name |
 | `MAX_UPLOAD_SIZE_MB` | No | `10` | Maximum file size in MB |
+| `JSON_BODY_LIMIT_MB` | No | `10` | Maximum JSON body size in MB |
 | `CORS_ALLOWED_ORIGINS` | No | All | Comma-separated allowed origins |
 | `RATE_LIMIT_WINDOW_MS` | No | `900000` | Rate limit window (15 min) |
 | `RATE_LIMIT_MAX_REQUESTS` | No | `100` | Max requests per window |

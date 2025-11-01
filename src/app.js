@@ -21,7 +21,7 @@ const app = express()
 // Middleware
 app.use(securityHeadersMiddleware)
 app.use(requestIdMiddleware)
-app.use(express.json({ limit: "10mb" }))
+app.use(express.json({ limit: `${config.upload.jsonLimitMB}mb` }))
 
 // Routes
 app.use("/", indexRouter)
