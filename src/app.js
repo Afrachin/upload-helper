@@ -9,10 +9,12 @@ const { validateEnv } = require("./config/env")
 validateEnv()
 
 const express = require("express")
+const healthCheck = require("express-hc")
 const config = require("./config")
 const logger = require("./utils/logger")
 const requestIdMiddleware = require("./utils/requestId")
 const securityHeadersMiddleware = require("./middlewares/security")
+const { customHealthCheck } = require("./utils/healthCheck")
 const indexRouter = require("./routes/index")
 const redisClient = require("./redis")
 
@@ -22,6 +24,9 @@ const app = express()
 app.use(securityHeadersMiddleware)
 app.use(requestIdMiddleware)
 app.use(express.json({ limit: `${config.upload.jsonLimitMB}mb` }))
+
+// Health check endpoint
+app.get("/health", healthCheck(customHealthCheck))
 
 // Routes
 app.use("/", indexRouter)

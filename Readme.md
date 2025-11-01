@@ -86,6 +86,64 @@ See `.env.example` for a complete example configuration.
 
 ## API Documentation
 
+### GET /health
+
+Health check endpoint that returns system metrics and dependency status. Useful for monitoring, load balancers, and container orchestration.
+
+**Response (200 - Healthy):**
+```json
+{
+  "failedMetrics": [],
+  "testResponse": {
+    "redis": true,
+    "s3": true,
+    "timestamp": "2025-01-01T12:00:00.000Z",
+    "config": {
+      "port": 3000,
+      "maxUploadSizeMB": 10,
+      "jsonLimitMB": 10,
+      "corsConfigured": true
+    }
+  },
+  "uptime": 123.45,
+  "mem_usage": {
+    "rss": 23456789,
+    "heapTotal": 12345678,
+    "heapUsed": 9876543,
+    "external": 456789
+  },
+  "node_resourceusage": { },
+  "cpu_usage": { "user": 12345, "system": 6789 }
+}
+```
+
+**Response (503 - Unhealthy):**
+```json
+{
+  "testResponse": {
+    "redis": false,
+    "redisError": "Connection refused",
+    "s3": true,
+    "timestamp": "2025-01-01T12:00:00.000Z"
+  }
+}
+```
+
+**Metrics Included:**
+- `redis`: Redis connectivity status
+- `s3`: S3/Object storage connectivity status
+- `uptime`: Server uptime in seconds
+- `mem_usage`: Memory usage statistics
+- `cpu_usage`: CPU usage statistics
+- `node_resourceusage`: Node.js resource usage
+
+**Example:**
+```bash
+curl https://upload.example.com/health
+```
+
+---
+
 ### POST /upload
 
 Creates a temporary upload ID for file upload. Requires authentication.
@@ -223,15 +281,51 @@ src/
 └── s3.js                 # S3 client
 ```
 
+## Health Monitoring
+
+The `/health` endpoint provides comprehensive health checks for production monitoring:
+
+### Kubernetes Integration
+
+```yaml
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 3000
+  initialDelaySeconds: 10
+  periodSeconds: 30
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: 3000
+  initialDelaySeconds: 5
+  periodSeconds: 10
+```
+
+### Docker Health Check
+
+The Dockerfile includes a built-in health check that uses this endpoint.
+
+### Monitoring Tools
+
+Compatible with:
+- Prometheus/Grafana
+- Datadog
+- New Relic
+- AWS ELB/ALB health checks
+- Any monitoring tool that supports HTTP health checks
+
 ## Troubleshooting
 
 ### Redis Connection Issues
-Ensure Redis is running and credentials are correct. Check logs for connection errors.
+Ensure Redis is running and credentials are correct. Check logs for connection errors. Use `/health` endpoint to verify connectivity.
 
 ### File Upload Fails
 - Verify file size is within limit
 - Check file type is supported
 - Ensure upload ID hasn't expired (15 min limit)
+- Check `/health` endpoint for S3 connectivity
 
 ### CORS Errors
 Add your frontend origin to `CORS_ALLOWED_ORIGINS` in `.env`
