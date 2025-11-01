@@ -1,14 +1,25 @@
 {
   "name": "upload-helper",
   "version": "1.0.0",
-  "description": "",
+  "description": "A secure file upload service with Redis-based temporary upload IDs and S3-compatible storage",
   "main": "src/app.js",
   "scripts": {
-    "start": "node ."
+    "start": "node .",
+    "dev": "nodemon",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint src/**/*.js --fix",
+    "format": "prettier --write \"src/**/*.js\"",
+    "format:check": "prettier --check \"src/**/*.js\""
   },
-  "keywords": [],
+  "keywords": [
+    "upload",
+    "file-upload",
+    "s3",
+    "redis",
+    "express"
+  ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.919.0",
     "cors": "^2.8.5",
@@ -17,5 +28,10 @@
     "multer": "^2.0.2",
     "redis": "^5.9.0",
     "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5"
   }
 }

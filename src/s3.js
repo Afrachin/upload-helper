@@ -1,12 +1,24 @@
-const { S3Client } = require("@aws-sdk/client-s3")
+/**
+ * S3 client configuration
+ * @module s3
+ */
 
+const { S3Client } = require("@aws-sdk/client-s3")
+const config = require("./config")
+
+/**
+ * Configured S3 client instance.
+ * Works with any S3-compatible storage (AWS S3, MinIO, etc.).
+ * 
+ * @type {S3Client}
+ */
 const s3 = new S3Client({
-  region: process.env.OBJECT_STORAGE_REGION || "us-east-1",
-  endpoint: process.env.OBJECT_STORAGE_ENDPOINT,
+  region: config.s3.region,
+  endpoint: config.s3.endpoint,
   forcePathStyle: false,
   credentials: {
-    accessKeyId: process.env.OBJECT_STORAGE_ACCESS_KEY,
-    secretAccessKey: process.env.OBJECT_STORAGE_SECRET_KEY
+    accessKeyId: config.s3.accessKeyId,
+    secretAccessKey: config.s3.secretAccessKey
   }
 })
 

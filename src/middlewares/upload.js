@@ -1,12 +1,24 @@
+/**
+ * Multer upload middleware configuration
+ * @module middlewares/upload
+ */
+
 const multer = require("multer")
+const config = require("../config")
 
-const maxUploadSizeMB = parseInt(process.env["MAX_UPLOAD_SIZE_MB"]) || 10
-const maxUploadSizeBytes = maxUploadSizeMB * 1024 * 1024
-
+/**
+ * Configured multer instance for file uploads.
+ * Uses memory storage and enforces file size limits from config.
+ * 
+ * @type {multer.Multer}
+ * 
+ * @example
+ * router.post('/upload', upload.single('file'), handler)
+ */
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: {
-    fileSize: maxUploadSizeBytes
+    fileSize: config.upload.maxSizeBytes
   }
 })
 
