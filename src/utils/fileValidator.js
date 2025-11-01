@@ -33,7 +33,7 @@ const FILE_SIGNATURES = {
       return buffer.length > 12 && 
              buffer[8] === 0x57 && buffer[9] === 0x45 && 
              buffer[10] === 0x42 && buffer[11] === 0x50
-    }}
+    } }
   ],
   "image/bmp": [
     { bytes: [0x42, 0x4D], offset: 0 }
