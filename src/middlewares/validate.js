@@ -3,8 +3,6 @@
  * @module middlewares/validate
  */
 
-const { ZodSchema } = require("zod")
-
 /**
  * Creates a validation middleware using a Zod schema.
  * Validates a specific section of the request (body, query, params, or headers).
