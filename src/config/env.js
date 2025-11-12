@@ -12,7 +12,6 @@ configDotenv()
  */
 const requiredEnvVars = [
   "ACCESS_TOKEN",
-  "REDIS_PASSWORD",
   "REDIS_HOST",
   "REDIS_PORT",
   "REDIS_KEY_PREFIX",
