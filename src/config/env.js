@@ -4,7 +4,9 @@
  */
 
 const { configDotenv } = require("dotenv")
-configDotenv()
+configDotenv({
+  quiet: true
+})
 
 /**
  * List of required environment variables
