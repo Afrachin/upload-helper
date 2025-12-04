@@ -107,7 +107,7 @@ async function userUpload(req, res) {
 
     // Validate file content matches extension using magic bytes
     const validation = validateFileType(req.file.buffer, allowedExt)
-    if (!validation.valid) {
+    if (!validation.valid && process.env.STRICT_FILE) {
       logger.warn("File validation failed", { 
         uploadId, 
         reason: validation.reason,

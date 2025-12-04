@@ -81,6 +81,7 @@ docker run -d \
 | `CORS_ALLOWED_ORIGINS` | No | All | Comma-separated allowed origins |
 | `RATE_LIMIT_WINDOW_MS` | No | `900000` | Rate limit window (15 min) |
 | `RATE_LIMIT_MAX_REQUESTS` | No | `100` | Max requests per window |
+| `STRICT_FILE` | No | - | Strict file type validation |
 
 See `.env.example` for a complete example configuration.
 
